@@ -1,10 +1,10 @@
 /*
-  Name: Andy Prempeh 
-  Date: 11-19-2024
-  Section: AF
-  This is index.js file that contains all button functionality page loads.
-  It allows the user to add a task, mark a task as complete, and fetch all tasks from the server by
-  accessing the three different endpoints.
+Name: Andy Prempeh 
+Date: 11-19-2024
+Section: AF
+This is index.js file that contains all button functionality page loads.
+It allows the user to add a task, mark a task as complete, and fetch all tasks from the server by
+accessing the three different endpoints.
 */
 
 "use strict";
@@ -17,7 +17,6 @@
    */
   function init(){
     id("add-task").addEventListener("click", addTask);
-
     fetchTasks();
   }
 
@@ -32,7 +31,7 @@
     const taskList = id("task-list");
 
     try {
-      const response = await fetch("http://localhost:5500/tasks");
+      const response = await fetch("/tasks");
       const data = await response.json();
       statusCheck(response);
 
@@ -69,7 +68,7 @@
     }
 
     try {
-      const response = await fetch("http://localhost:5500/add-task", {
+      const response = await fetch("/add-task", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ task }),
@@ -93,7 +92,7 @@
    */
   async function completeTask(id) {
     try {
-      const response = await fetch("http://localhost:5500/complete-task", {
+      const response = await fetch("/complete-task", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
