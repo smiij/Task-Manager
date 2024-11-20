@@ -1,10 +1,10 @@
-/*
-  Names: Andy Prempeh 
-  Date: 11-19-2024
-  Section: AF
-  This is app.js file that contains all the server-side functionality for the task list web app.
-  It includes three endpoints: GET /tasks, POST /add-task, and POST /complete-task.
-*/
+/**
+ * Andy Prempeh
+ * 11-19-2024
+ * Section AF
+ * This is app.js file that contains all the server-side functionality for the task list web app.
+ * It includes three endpoints: GET /tasks, POST /add-task, and POST /complete-task.
+ */
 
 "use strict";
 
@@ -23,11 +23,12 @@ app.use(express.static("public"));
  * Retrieves the list of tasks.
  */
 app.get("/tasks", async (req, res) => {
+  const internalServerCode = 500;
   try {
     const data = JSON.parse(await fs.readFile("tasks.json", "utf-8"));
     res.json(data);
   } catch (err) {
-    res.status(500).send("Error reading tasks.");
+    res.status(internalServerCode).send("Error reading tasks.");
   }
 });
 
@@ -36,18 +37,22 @@ app.get("/tasks", async (req, res) => {
  * Adds a new task to the data.json file.
  */
 app.post("/add-task", async (req, res) => {
+  const successCode = 201;
+  const internalServerCode = 500;
+  const inputErrorCode = 400;
+
   try {
-    const { task } = req.body;
+    const {task} = req.body;
     if (!task) {
-      return res.status(400).send("Missing 'task' in request body.");
+      return res.status(inputErrorCode).send("Missing 'task' in request body.");
     }
 
     const data = JSON.parse(await fs.readFile("tasks.json", "utf-8"));
     data.tasks.push({ id: Date.now(), task, completed: false });
     await fs.writeFile("tasks.json", JSON.stringify(data, null, 2));
-    res.status(201).send("Task added successfully.");
+    res.status(successCode).send("Task added successfully.");
   } catch (err) {
-    res.status(500).send("Error writing task.");
+    res.status(internalServerCode).send("Error writing task.");
   }
 });
 
@@ -56,16 +61,18 @@ app.post("/add-task", async (req, res) => {
  * Marks a task as complete by its ID.
  */
 app.post("/complete-task", async (req, res) => {
+  const inputErrorCode = 400;
+  const notFoundCode = 404;
   try {
-    const { id } = req.body;
+    const {id} = req.body;
     if (!id) {
-      return res.status(400).send("Missing 'id' in request body.");
+      return res.status(inputErrorCode).send("Missing 'id' in request body.");
     }
 
     const data = JSON.parse(await fs.readFile("tasks.json", "utf-8"));
-    const task = data.tasks.find(t => t.id === id);
+    const task = data.tasks.find(item => item.id === id);
     if (!task) {
-      return res.status(404).send("Task not found.");
+      return res.status(notFoundCode).send("Task not found.");
     }
 
     task.completed = true;
@@ -76,5 +83,6 @@ app.post("/complete-task", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5500;
+const portNum = 5500;
+const PORT = process.env.PORT || portNum;
 app.listen(PORT);

@@ -1,12 +1,12 @@
 /*
-Names: Andy Prempeh 
+Names: Andy Prempeh
 Date: 11-19-2024
 Section: AF
 This is styles.css file that holds the styling for the index.html file.
 */
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
   margin: 20px;
   background-color: bisque;
   text-align: center;

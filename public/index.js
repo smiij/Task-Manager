@@ -1,21 +1,21 @@
-/*
-Name: Andy Prempeh 
-Date: 11-19-2024
-Section: AF
-This is index.js file that contains all button functionality page loads.
-It allows the user to add a task, mark a task as complete, and fetch all tasks from the server by
-accessing the three different endpoints.
-*/
+/**
+ * Andy Prempeh
+ * 11-19-2024
+ * Section AF
+ * This is index.js file that contains all button functionality page loads.
+ * It allows the user to add a task, mark a task as complete, and fetch all tasks from the server
+ * by accessing the three different endpoints.
+ */
 
 "use strict";
 
-(function () {
+(function() {
   window.addEventListener("load", init);
 
   /**
    * Initializes the web app by setting up event listeners and fetching all tasks.
    */
-  function init(){
+  function init() {
     id("add-task").addEventListener("click", addTask);
     fetchTasks();
   }
@@ -23,7 +23,6 @@ accessing the three different endpoints.
   /**
    * Fetches all tasks from the server and displays them on the page.
    * Dynamically creates DOM elements to represent each task.
-   * 
    * @async
    * @throws {Error} Throws an error if the fetch request fails.
    */
@@ -54,7 +53,6 @@ accessing the three different endpoints.
   /**
    * Adds a new task to the task list by sending a POST request to the server.
    * Validates the task input and updates the what the user sees on success.
-   * 
    * @async
    * @function addTask
    * @returns {Promise<void>} Resolves when the task is successfully added or logs an error message.
@@ -71,7 +69,7 @@ accessing the three different endpoints.
       const response = await fetch("/add-task", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ task }),
+        body: JSON.stringify({task}),
       });
       statusCheck(response);
       newTask.value = "";
@@ -95,9 +93,9 @@ accessing the three different endpoints.
       const response = await fetch("/complete-task", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({id})
       });
-      statusCheck(response)
+      statusCheck(response);
       fetchTasks();
     } catch (err) {
       showError(err.message);
@@ -105,15 +103,15 @@ accessing the three different endpoints.
   }
 
   /**
-  * Displays an error message to the user by updating the error-message element in the DOM.
-  * 
-  * @function showError
-  * @param {string} message - The error message to display.
-  */
+   * Displays an error message to the user by updating the error-message element in the DOM.
+   * 
+   * @function showError
+   * @param {string} message - The error message to display.
+   */
   function showError(message) {
-    const err_message = id("error-message");
-    err_message.textContent = message;
-    err_message.classList.remove("hidden");
+    const errMessage = id("error-message");
+    errMessage.textContent = message;
+    errMessage.classList.remove("hidden");
   }
 
   /**
@@ -140,10 +138,10 @@ accessing the three different endpoints.
   }
 
   /**
-  * Returns a new element with the given tag name.
-  * @param {string} tagName - HTML tag name for new DOM element.
-  * @returns {object} New DOM object for given HTML tag.
-  */
+    * Returns a new element with the given tag name.
+    * @param {string} tagName - HTML tag name for new DOM element.
+    * @returns {object} New DOM object for given HTML tag.
+    */
   function gen(tagName) {
     return document.createElement(tagName);
   }
