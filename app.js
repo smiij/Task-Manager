@@ -48,7 +48,7 @@ app.post("/add-task", async (req, res) => {
     }
 
     const data = JSON.parse(await fs.readFile("tasks.json", "utf-8"));
-    data.tasks.push({ id: Date.now(), task, completed: false });
+    data.tasks.push({id: Date.now(), task, completed: false});
     await fs.writeFile("tasks.json", JSON.stringify(data, null, 2));
     res.status(successCode).send("Task added successfully.");
   } catch (err) {
@@ -63,6 +63,7 @@ app.post("/add-task", async (req, res) => {
 app.post("/complete-task", async (req, res) => {
   const inputErrorCode = 400;
   const notFoundCode = 404;
+  const internalServerCode = 500;
   try {
     const {id} = req.body;
     if (!id) {
@@ -79,7 +80,7 @@ app.post("/complete-task", async (req, res) => {
     await fs.writeFile("tasks.json", JSON.stringify(data, null, 2));
     res.send("Task marked as complete.");
   } catch (err) {
-    res.status(500).send("Error updating task.");
+    res.status(internalServerCode).send("Error updating task.");
   }
 });
 

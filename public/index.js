@@ -68,8 +68,8 @@
     try {
       const response = await fetch("/add-task", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({task}),
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({task})
       });
       statusCheck(response);
       newTask.value = "";
@@ -82,17 +82,17 @@
   /**
    * Marks a task as completed by sending its ID in a POST request to the server.
    * Updates the task list upon successful completion.
-   * 
    * @async
    * @function completeTask
    * @param {number} id - The unique ID of the task to mark as complete.
-   * @returns {Promise<void>} Resolves when the task is successfully marked as complete or logs an error message.
+   * @returns {Promise<void>} Resolves when the task is successfully marked as complete
+   * or logs an error message.
    */
   async function completeTask(id) {
     try {
       const response = await fetch("/complete-task", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify({id})
       });
       statusCheck(response);
@@ -129,19 +129,19 @@
   }
 
   /**
-    * Returns the element that has the ID attribute with the specified value.
-    * @param {string} idName - element ID
-    * @returns {object} DOM object associated with id.
-    */
+   * Returns the element that has the ID attribute with the specified value.
+   * @param {string} idName - element ID
+   * @returns {object} DOM object associated with id.
+   */
   function id(idName) {
     return document.getElementById(idName);
   }
 
   /**
-    * Returns a new element with the given tag name.
-    * @param {string} tagName - HTML tag name for new DOM element.
-    * @returns {object} New DOM object for given HTML tag.
-    */
+   * Returns a new element with the given tag name.
+   * @param {string} tagName - HTML tag name for new DOM element.
+   * @returns {object} New DOM object for given HTML tag.
+   */
   function gen(tagName) {
     return document.createElement(tagName);
   }
