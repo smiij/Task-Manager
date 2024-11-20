@@ -1,69 +1,93 @@
-# *FILL IN NAME* API Documentation
-*Fill in a short description here about the API's purpose.*
-
-## *Fill in Endpoint 1 Title*
-**Request Format:** *Fill in example request format, i.e. the path*
-
-**Request Type:** *Fill in request type*
-
-**Returned Data Format**: Plain Text
-
-**Description:** *Fill in description*
-
-**Example Request:** *Fill in example request*
-
-**Example Response:**
-*Fill in example response in the ticks*
-
-```
-
-```
-
-**Error Handling:**
-*Fill in an example of the error handling*
+# Task Manager API Documentation
 
 
-## *Fill in Endpoint 2 Title*
-**Request Format:** *Fill in example request format, i.e. the path*
+## Fetch Tasks
+**Request Format:** /tasks
 
-**Request Type:** *Fill in request type*
+**Request Type:** GET
 
 **Returned Data Format**: JSON
 
-**Description:** *Fill in description*
+**Description:** Fetches the list of all tasks stored in the tasks.json file. Each task includes an id, task text, and a complete status.
 
-**Example Request:** *Fill in example request*
+**Example Request:** GET http://localhost:5500/tasks
 
 **Example Response:**
-*Fill in example response in the {}*
 
-```json
+```
 {
-
+  "tasks": [
+    {
+      "id": 1697057768520,
+      "task": "Finish the project",
+      "complete": false
+    },
+    {
+      "id": 1697057800023,
+      "task": "Write documentation",
+      "complete": true
+    }
+  ]
 }
 ```
 
 **Error Handling:**
-*Fill in an example of the error handling*
+If the json file cannot be read/parsed an error message is returned. "500 Internal Server Error, An error occurred reading tasks."
 
 
-## *Fill in Endpoint 3 Title*
-**Request Format:** *Fill in example request format, i.e. the path*
+## Add Tasks
+**Request Format:** /add-task
 
-**Request Type:** *Fill in request type*
+**Request Type:** POST
 
 **Returned Data Format**: Plain Text
 
-**Description:** *Fill in description*
+**Description:** Adds a new task to the tasks.json file and requires a task string for the body
 
-**Example Request:** *Fill in example request*
+**Example Request:**   "task": "Create API documentation"
 
 **Example Response:**
-*Fill in example response in the {}*
 
-```
-
+```Plain Text
+201 Created  
+Task successfully added.  
 ```
 
 **Error Handling:**
-*Fill in an example of the error handling*
+If a task is not entered, an error is shown.
+"Task is required, please provide one."
+
+If there is an error writing to the JSON file
+"An error occurred writing your task."
+
+
+## Complete Task
+**Request Format:** /complete-task
+
+**Request Type:** POST
+
+**Returned Data Format**: Plain Text
+
+**Description:** An error occurred writing your task.  
+
+**Example Request:** "id": 1697057768520
+
+**Example Response:**
+
+```Plain Text
+200 OK  
+Task successfully marked completed.  
+```
+
+**Error Handling:**
+If the task with the id was not found, an error message is returned:
+"404 Not Found
+Task was not found."
+
+If the id field is missing, an error message is returned:
+"400 Bad Request  
+A Task ID is required, please provide one."
+
+If there is an error writing to the file, an error message is returned:
+"500 Internal Server Error  
+An error occurred updating your task."
