@@ -104,7 +104,6 @@
 
   /**
    * Displays an error message to the user by updating the error-message element in the DOM.
-   * 
    * @function showError
    * @param {string} message - The error message to display.
    */
