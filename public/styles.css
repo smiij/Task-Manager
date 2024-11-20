@@ -1,0 +1,48 @@
+/*
+Names: Andy Prempeh 
+Date: 11-19-2024
+Section: AF
+This is styles.css file that holds the styling for the index.html file.
+*/
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: bisque;
+  text-align: center;
+  font-size: 40px;
+}
+
+h1 {
+  color: rgb(85, 0, 121);
+  font-size: 100px;
+}
+
+#task-feed {
+  margin-bottom: 20px;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.hidden {
+  display: none;
+}
+
+input[type="text"] {
+  width: 50%;
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px;
+}
+
+button {
+  padding: 10px;
+  font-size: 20px;
+  margin: 10px;
+}
+
+#error {
+  color: rgb(85, 0, 121);
+}

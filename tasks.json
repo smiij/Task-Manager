@@ -1,0 +1,53 @@
+/*
+  Names: Andy Prempeh 
+  Date: 11-19-2024
+  Section: AF
+  This is tasks.json file that contains the tasks for the to-do list.
+  The tasks are stored in an array of objects. Each object has three properties:
+  it's id, what the task itself is and if is completed or not
+*/
+
+{
+  "tasks": [
+    {
+      "id": 1732055795979,
+      "task": "add",
+      "completed": true
+    },
+    {
+      "id": 1732055803378,
+      "task": "add this",
+      "completed": true
+    },
+    {
+      "id": 1732055946574,
+      "task": "add",
+      "completed": true
+    },
+    {
+      "id": 1732055964311,
+      "task": "add",
+      "completed": true
+    },
+    {
+      "id": 1732056477033,
+      "task": "Wake up after 2:00pm",
+      "completed": true
+    },
+    {
+      "id": 1732056582313,
+      "task": "add",
+      "completed": true
+    },
+    {
+      "id": 1732056722637,
+      "task": "Study",
+      "completed": true
+    },
+    {
+      "id": 1732058284055,
+      "task": "hello",
+      "completed": true
+    }
+  ]
+}
