@@ -76,7 +76,5 @@ app.post("/complete-task", async (req, res) => {
   }
 });
 
-const PORT = 5500;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 5500;
+app.listen(PORT);
